@@ -1,9 +1,10 @@
 import React from 'react'
+import CustomerNotification from '../Components/CustomerNotification/CustomerNotification'
 
 const Customer = () => {
   return (
     <div>
-      Customer
+      <CustomerNotification/>
     </div>
   )
 }

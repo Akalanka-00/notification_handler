@@ -23,9 +23,14 @@ const AdminNotification = () => {
   });
 
   const [checkValue, setCheckValue] = useState(1);
+  const [toastPopup, setToastPopup] = useState(false);
 
   const notificationCollectionRef = collection(db, "NotificationCollection");
   let x;
+
+  const delay = ms => new Promise(
+    resolve => setTimeout(resolve, ms)
+  );
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -207,57 +212,7 @@ const AdminNotification = () => {
             <Button
               variant="primary"
               type="submit"
-              onClick={() => {
-                //alert("Option is: "+checkValue)
-
-                // if (checkValue == 1) {
-                //   setNotificationData({
-                //     ...notificationData,
-                //     customer_broadcast: true,
-                //   });
-                //   setNotificationData({
-                //     ...notificationData,
-                //     developer_broadcast: true,
-                //   });
-
-                //   console.log("it is 1")
-                // }
-
-                // if (checkValue == 2) {
-                //   setNotificationData({
-                //     ...notificationData,
-                //     customer_broadcast: true,
-                //   });
-                //   setNotificationData({
-                //     ...notificationData,
-                //     developer_broadcast: false,
-                //   });
-                //   console.log("it is 2")
-                // }
-
-                // if (checkValue == 3) {
-                //   setNotificationData({
-                //     ...notificationData,
-                //     customer_broadcast: false,
-                //   });
-                //   setNotificationData({
-                //     ...notificationData,
-                //     developer_broadcast: true,
-                //   });
-                //   console.log("it is 3")
-                // }
-
-                // if (checkValue == 4) {
-                //   setNotificationData({
-                //     ...notificationData,
-                //     customer_broadcast: false,
-                //   });
-                //   setNotificationData({
-                //     ...notificationData,
-                //     developer_broadcast: false,
-                //   });
-                //   console.log("it is 4")
-                // }
+              onClick={async () => {
 
                 const today = new Date();
                 const currentDate =
@@ -268,11 +223,6 @@ const AdminNotification = () => {
                   today.getDate();
 
                 console.log(currentDate);
-
-                // setNotificationData({
-                //   ...notificationData,
-                //   pushed_date: currentDate,
-                // });
 
                 const currentTime =
                   today.getHours() +
@@ -287,6 +237,10 @@ const AdminNotification = () => {
                   pushed_date: currentDate,
                   pushed_time: currentTime,
                 });
+
+                setToastPopup(true)
+                await delay(9000);
+                setToastPopup(false)
               }}
             >
               Push Notification
@@ -295,20 +249,21 @@ const AdminNotification = () => {
         </Col>
       </Form>
 
+      {toastPopup?
       <ToastContainer className="p-3" position="bottom-end">
-        <Toast>
-          <Toast.Header closeButton={true}>
-            <img
-              src="holder.js/20x20?text=%20"
-              className="rounded me-2"
-              alt=""
-            />
-            <strong className="me-auto">AdPlayer</strong>
-            <small>Just Now</small>
-          </Toast.Header>
-          <Toast.Body>Notification has been pushed successfully.</Toast.Body>
-        </Toast>
-      </ToastContainer>
+      <Toast>
+        <Toast.Header closeButton={false}>
+          <img
+            src="holder.js/20x20?text=%20"
+            className="rounded me-2"
+            alt=""
+          />
+          <strong className="me-auto">AdPlayer</strong>
+          <small>Just Now</small>
+        </Toast.Header>
+        <Toast.Body>Notification has been pushed successfully.</Toast.Body>
+      </Toast>
+    </ToastContainer>:""}
     </div>
   );
 };

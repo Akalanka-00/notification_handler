@@ -17,6 +17,7 @@ const AdminNotification = () => {
     target_users: "",
     customer_broadcast: true,
     developer_broadcast: true,
+    reviewed_by_user: false,
     pushed_date: "",
     pushed_time: "",
   });
@@ -45,6 +46,7 @@ const AdminNotification = () => {
             target_users: "",
             customer_broadcast: true,
             developer_broadcast: true,
+            reviewed_by_user:false,
             pushed_date: "",
             pushed_time: "",
         })

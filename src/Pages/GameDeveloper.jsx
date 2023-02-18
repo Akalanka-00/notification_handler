@@ -1,9 +1,10 @@
 import React from 'react'
+import DeveloperNotification from '../Components/DeveloperNotification/DeveloperNotification'
 
 const GameDeveloper = () => {
   return (
     <div>
-      Developer
+      <DeveloperNotification/>
     </div>
   )
 }

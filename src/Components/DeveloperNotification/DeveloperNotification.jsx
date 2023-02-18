@@ -13,9 +13,9 @@ import {
   updateDoc,
   WhereFilterOp,
 } from "firebase/firestore";
-import CustomerNotificationCard from "./CustomerNotificationCard";
+import DeveloperNotificationCard from "./DeveloperNotificationCard";
 
-const CustomerNotification = () => {
+const DeveloperNotification = () => {
   const notificationCollectionRef = collection(db, "NotificationCollection");
   const [notificationData, setNotificationData] = useState([]);
 
@@ -50,7 +50,7 @@ const CustomerNotification = () => {
                   <>
                     <Row>
                       {(count = count + 1)}
-                      <CustomerNotificationCard notificationData={element} />
+                      <DeveloperNotificationCard notificationData={element} />
                     </Row>
                   </>
                 ) : (
@@ -61,7 +61,7 @@ const CustomerNotification = () => {
           </Container>
         </Modal.Body>
         <Modal.Footer>
-          <Button href="/customer/notifications" onClick={props.onHide}>Close</Button>
+          <Button href="/developer/notifications" onClick={props.onHide}>Close</Button>
         </Modal.Footer>
       </Modal>
     );
@@ -86,4 +86,4 @@ const CustomerNotification = () => {
   );
 };
 
-export default CustomerNotification;
+export default DeveloperNotification;

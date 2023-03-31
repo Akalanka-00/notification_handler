@@ -8,7 +8,6 @@ import {
   onSnapshot,
   doc,
   updateDoc,
-  WhereFilterOp,
   orderBy,
   query,
 } from "firebase/firestore";
@@ -43,6 +42,7 @@ const NotificationPanel = ({ isDev }) => {
         <Button
           variant="primary"
           onClick={() => {
+            // eslint-disable-next-line no-lone-blocks
             {
               notificationData.map((element, index) => {
                 if (!element.reviewed_by_user && element.customer_broadcast) {
